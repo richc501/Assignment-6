@@ -41,53 +41,49 @@ public class ShuffleCipher implements MessageDecoder {
 		}
 		else
 		{
-			newMessage1 = message.substring(0,message.length()/2);
-			newMessage2 = message.substring(message.length()/2,message.length());
-			System.out.println(newMessage1);
-			System.out.println(newMessage2);
-			for(int j=0;j<newMessage1.length()/2;j++)
-			{
-				char firstLetter, secondLetter;
-				firstLetter = newMessage1.charAt(j);
-				secondLetter = newMessage1.charAt(j+2);
-				part1Message.append(firstLetter);
-				part1Message.append(secondLetter);
-			}
-			newMessage1=part1Message.toString();
-			System.out.println(newMessage1);
-			for(int k=0;k<newMessage2.length();k++)
-			{
-				char firstLetter, secondLetter;
-				firstLetter = newMessage2.charAt(k);
-				//secondLetter = newMessage2.charAt(k+2);
-				part2Message.append(firstLetter);
-				//part2Message.append(secondLetter);
-				k++;
-			}
-			for(int l=0;l<newMessage2.length()/2;l++)
-			{
-				char firstLetter, secondLetter;
-				firstLetter = newMessage2.charAt(l+1);
-				part2Message.append(firstLetter);
-				l++;
-			}
-			newMessage2=part2Message.toString();
-			System.out.println(newMessage2);
-			for(int i=0;i<newMessage1.length()/2;i++)
-			{
-				char firstLetter1,firstLetter2,secondLetter1,secondLetter2;
-				firstLetter1 = newMessage1.charAt(i);
-				secondLetter1 = newMessage1.charAt(i+1);
-				builtMessage.append(firstLetter1);
-				builtMessage.append(secondLetter1);
-				firstLetter2 = newMessage2.charAt(i);
-				secondLetter2 = newMessage2.charAt(i+1);
-				builtMessage.append(firstLetter2);
-				builtMessage.append(secondLetter2);
-			}
-			//builtMessage.append(newMessage1.charAt(index));
-		}
+			newMessage1 = message.substring(0,message.length()/2+1);
+			newMessage2 = message.substring(message.length()/2+1,message.length());
+			String newMessage = message.replace("", " ");
+			newMessage = newMessage.trim();
+			newMessage2 = newMessage2.replace(""," ");
+			newMessage2 = newMessage2.trim();
+			String temp;
+			String[] test = newMessage.split("");
+			String[] test2 = newMessage2.split(" ");
 
+			System.out.println(test.length);
+
+			//StringBuilder test12 = new StringBuilder(newMessage1);
+			int index=0;
+			System.out.println("_____________");
+			while(index<test.length)
+			{
+
+				//test[index+2]=Character.toString(newMessage2.charAt(index));
+				System.out.println(test[index]);
+				index++;
+			}
+			System.out.println("_____________");
+			int count=0;
+			for(index=0;index<message.length()/2;index++)
+			{
+				System.out.println(index);
+				temp=test2[index];
+				System.out.println(temp);
+				test[count+1]= temp;
+				//test[(test.length/2)+index+2]=temp;
+				count+=2;
+			}
+			index=0;
+			System.out.println("_____________");
+			while(index<message.length())
+			{
+
+				builtMessage.append(test[index]);
+				index++;
+			}
+			newMessage1 = builtMessage.toString();
+		}
 		//System.out.println(newMessage1);
 		//System.out.println(newMessage2);
 		message = builtMessage.toString();
